@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterReplacement", "CharacterReplacement.csproj", "{4E251C5E-3B2B-4CF8-8F3F-09EDAEBC1EEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E251C5E-3B2B-4CF8-8F3F-09EDAEBC1EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E251C5E-3B2B-4CF8-8F3F-09EDAEBC1EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E251C5E-3B2B-4CF8-8F3F-09EDAEBC1EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E251C5E-3B2B-4CF8-8F3F-09EDAEBC1EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD09B2B6-83DA-471F-A0B8-FD3CE58FA0C2}
+	EndGlobalSection
+EndGlobal
