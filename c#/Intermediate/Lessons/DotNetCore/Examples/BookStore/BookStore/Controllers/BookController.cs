@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Repositoriy.Concrate.Ef;
 
 namespace BookStore.Controllers
 {
@@ -10,13 +8,13 @@ namespace BookStore.Controllers
     [Route("api/[controller]s")]
     public class BookController : ControllerBase
     {
-        private readonly BookStoreDBContext _context;
-        public BookController(BookStoreDBContext context)
+        private readonly EfRepositoryContext _context;
+        public BookController(EfRepositoryContext context)
         {
             this._context = context;
         }
-
-        public HashSet<Book?>? GetBooks()
+        [HttpGet]
+        public HashSet<Book?>? Books()
         {
             return _context.Books.OrderBy(e => e.Id).ToHashSet<Book?>();
         }

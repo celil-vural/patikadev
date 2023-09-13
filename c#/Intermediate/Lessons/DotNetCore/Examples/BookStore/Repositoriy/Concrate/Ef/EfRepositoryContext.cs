@@ -1,12 +1,11 @@
+﻿using Entities;
 using Microsoft.EntityFrameworkCore;
-namespace BookStore
-{
-    public class BookStoreDBContext : DbContext
-    {
-        public BookStoreDBContext(DbContextOptions<BookStoreDBContext> options) : base(options)
-        {
 
-        }
+namespace Repositoriy.Concrate.Ef
+{
+    public class EfRepositoryContext : DbContext
+    {
+        public EfRepositoryContext(DbContextOptions<EfRepositoryContext> options) : base(options) { }
 
         public DbSet<Book> Books { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,6 +14,7 @@ namespace BookStore
             modelBuilder.Entity<Book>().HasData(
                 new()
                 {
+                    Id = 1,
                     Title = "Lean Startup",
                     GenreId = 1,//Personal Growth
                     PageCount = 224,
@@ -22,6 +22,7 @@ namespace BookStore
                 },
                 new()
                 {
+                    Id = 2,
                     Title = "Herland",
                     GenreId = 2,//Sciene Fiction
                     PageCount = 224,
@@ -29,6 +30,8 @@ namespace BookStore
                 },
                 new()
                 {
+
+                    Id = 3,
                     Title = "Herland",
                     GenreId = 2,//Sciene Fiction
                     PageCount = 224,

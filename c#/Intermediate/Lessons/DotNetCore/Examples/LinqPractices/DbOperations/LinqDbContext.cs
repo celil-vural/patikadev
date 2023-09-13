@@ -15,12 +15,24 @@ namespace LinqPractices
             modelBuilder.Entity<Student>().HasData(
                 new Student()
                 {
-                    Id = 1,
                     Name = "Ayşe",
+                    Surname = "Yılmaz",
+                    ClassId = 1
+                },
+                new Student()
+                {
+                    Name = "Umut",
+                    Surname = "Arda",
+                    ClassId = 2
+                },
+                new Student()
+                {
+                    Name = "Mehmet",
                     Surname = "Yılmaz",
                     ClassId = 1
                 }
             );
+
         }
     }
 }

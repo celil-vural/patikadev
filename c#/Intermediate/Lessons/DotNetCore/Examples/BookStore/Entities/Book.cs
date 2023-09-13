@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookStore
+namespace Entities
 {
     public class Book
     {
