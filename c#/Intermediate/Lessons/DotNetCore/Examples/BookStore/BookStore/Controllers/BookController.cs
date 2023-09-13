@@ -1,11 +1,7 @@
-using AutoMapper;
-using BookStore.BookOperations.CreateBook;
-using BookStore.BookOperations.DeleteBook;
-using BookStore.BookOperations.GetBookDetail;
-using BookStore.BookOperations.GetBooks;
-using BookStore.BookOperations.UpdateBook;
+using Entities.Concrete.Dtos.Book;
+using Entities.Concrete.Dtos.Books;
 using Microsoft.AspNetCore.Mvc;
-using Repositoriy.Concrate.Ef;
+using Services.Contracts.Books;
 
 namespace BookStore.Controllers
 {
@@ -13,20 +9,17 @@ namespace BookStore.Controllers
     [Route("api/[controller]s")]
     public class BookController : ControllerBase
     {
-        private readonly EfRepositoryContext _context;
-        private readonly IMapper _mapper;
-        public BookController(EfRepositoryContext context, IMapper mapper)
+        private readonly IBookService _bookService;
+        public BookController(IBookService bookService)
         {
-            this._context = context;
-            _mapper = mapper;
+            _bookService = bookService;
         }
         [HttpGet]
         public IActionResult Books()
         {
             try
             {
-                GetBooksQuery query = new(_context, _mapper);
-                var result = query.Handle();
+                var result = _bookService.GetHashSet<DtoForGetBooks>();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -37,12 +30,9 @@ namespace BookStore.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute(Name = "id")] int id)
         {
-            BookDetailViewModel result;
             try
             {
-                GetBookDetailQuery query = new(_context, _mapper);
-                query.BookId = id;
-                result = query.Handle();
+                var result = _bookService.GetWithId<DtoForGetBookDetail>(id);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -51,13 +41,11 @@ namespace BookStore.Controllers
             }
         }
         [HttpPost]
-        public IActionResult AddBook([FromForm] CreateBookModel newBook)
+        public IActionResult AddBook([FromForm] DtoForCreateBook newBook)
         {
             try
             {
-                CreateBookCommand command = new(_context, _mapper);
-                command.Model = newBook;
-                command.Handle();
+                _bookService.CreateWithDto(newBook);
                 return Ok();
             }
             catch (Exception ex)
@@ -67,14 +55,11 @@ namespace BookStore.Controllers
 
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateBook([FromRoute] int id, [FromBody] UpdateBookModel updatedBook)
+        public IActionResult UpdateBook([FromBody] DtoForUpdateBook updatedBook)
         {
             try
             {
-                UpdateBookCommand command = new(_context, _mapper);
-                command.BookId = id;
-                command.Model = updatedBook;
-                command.Handle();
+                _bookService.Update(updatedBook);
                 return Ok();
             }
             catch (Exception ex)
@@ -88,9 +73,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                DeleteBookCommand command = new(_context);
-                command.BookId = id;
-                command.Handle();
+                _bookService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

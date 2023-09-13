@@ -1,7 +1,7 @@
-﻿using Entities;
+﻿using Entities.Concrete.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace Repositoriy.Concrate.Ef
+namespace Repositoriy.Concrete.Ef
 {
     public class EfRepositoryContext : DbContext
     {

@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Entities.Contracts;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities
+namespace Entities.Concrete.Model
 {
-    public class Book
+    public class Book : IEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore", "BookStore\Book
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{878BE139-6EB2-43FC-8647-65B2D5539C6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositoriy", "Repositoriy\Repositoriy.csproj", "{0A83762B-F90B-4049-B250-603B77452F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositoriy\Repositories.csproj", "{0A83762B-F90B-4049-B250-603B77452F7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{B0EC2033-2490-4D63-AA84-B74827629068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{0A83762B-F90B-4049-B250-603B77452F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A83762B-F90B-4049-B250-603B77452F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A83762B-F90B-4049-B250-603B77452F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EC2033-2490-4D63-AA84-B74827629068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EC2033-2490-4D63-AA84-B74827629068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EC2033-2490-4D63-AA84-B74827629068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EC2033-2490-4D63-AA84-B74827629068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FB12427-F27C-4F53-9F6E-F722E99F0095}
 	EndGlobalSection
 EndGlobal
