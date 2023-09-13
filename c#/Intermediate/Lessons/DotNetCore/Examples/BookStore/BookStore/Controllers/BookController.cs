@@ -1,3 +1,4 @@
+using AutoMapper;
 using BookStore.BookOperations.CreateBook;
 using BookStore.BookOperations.DeleteBook;
 using BookStore.BookOperations.GetBookDetail;
@@ -5,7 +6,6 @@ using BookStore.BookOperations.GetBooks;
 using BookStore.BookOperations.UpdateBook;
 using Microsoft.AspNetCore.Mvc;
 using Repositoriy.Concrate.Ef;
-using static BookStore.BookOperations.CreateBook.CreateBookQuery;
 
 namespace BookStore.Controllers
 {
@@ -14,16 +14,25 @@ namespace BookStore.Controllers
     public class BookController : ControllerBase
     {
         private readonly EfRepositoryContext _context;
-        public BookController(EfRepositoryContext context)
+        private readonly IMapper _mapper;
+        public BookController(EfRepositoryContext context, IMapper mapper)
         {
             this._context = context;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult Books()
         {
-            GetBooksQuery query = new(_context);
-            var result = query.Handle();
-            return Ok(result);
+            try
+            {
+                GetBooksQuery query = new(_context, _mapper);
+                var result = query.Handle();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute(Name = "id")] int id)
@@ -31,7 +40,7 @@ namespace BookStore.Controllers
             BookDetailViewModel result;
             try
             {
-                GetBookDetailQuery query = new(_context);
+                GetBookDetailQuery query = new(_context, _mapper);
                 query.BookId = id;
                 result = query.Handle();
                 return Ok(result);
@@ -46,7 +55,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                CreateBookQuery command = new(_context);
+                CreateBookCommand command = new(_context, _mapper);
                 command.Model = newBook;
                 command.Handle();
                 return Ok();
@@ -62,7 +71,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                UpdateBookCommand command = new(_context);
+                UpdateBookCommand command = new(_context, _mapper);
                 command.BookId = id;
                 command.Model = updatedBook;
                 command.Handle();

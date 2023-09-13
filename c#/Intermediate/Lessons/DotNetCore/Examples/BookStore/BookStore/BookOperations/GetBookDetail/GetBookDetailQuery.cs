@@ -1,4 +1,4 @@
-﻿using Entities.Common;
+﻿using AutoMapper;
 using Repositoriy.Concrate.Ef;
 
 namespace BookStore.BookOperations.GetBookDetail
@@ -6,10 +6,12 @@ namespace BookStore.BookOperations.GetBookDetail
     public class GetBookDetailQuery
     {
         private readonly EfRepositoryContext _context;
+        private readonly IMapper _mapper;
         public int BookId { get; set; }
-        public GetBookDetailQuery(EfRepositoryContext context)
+        public GetBookDetailQuery(EfRepositoryContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public BookDetailViewModel Handle()
         {
@@ -18,14 +20,7 @@ namespace BookStore.BookOperations.GetBookDetail
             {
                 throw new InvalidOperationException("Kitap bulunamadı.");
             }
-            BookDetailViewModel vm;
-            vm = new BookDetailViewModel()
-            {
-                Title = book.Title,
-                Genre = ((GenreEnum)book.GenreId).ToString(),
-                PageCount = book.PageCount,
-                PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy")
-            };
+            BookDetailViewModel vm = _mapper.Map<BookDetailViewModel>(book);
             return vm;
         }
     }

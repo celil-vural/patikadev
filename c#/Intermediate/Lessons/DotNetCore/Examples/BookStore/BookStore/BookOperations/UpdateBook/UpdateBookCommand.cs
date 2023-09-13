@@ -1,4 +1,5 @@
-﻿using Repositoriy.Concrate.Ef;
+﻿using AutoMapper;
+using Repositoriy.Concrate.Ef;
 
 namespace BookStore.BookOperations.UpdateBook
 {
@@ -6,10 +7,12 @@ namespace BookStore.BookOperations.UpdateBook
     {
         private readonly EfRepositoryContext _context;
         public int BookId { get; set; }
+        private readonly IMapper _mapper;
         public UpdateBookModel Model { get; set; }
-        public UpdateBookCommand(EfRepositoryContext context)
+        public UpdateBookCommand(EfRepositoryContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         public void Handle()
         {
@@ -18,8 +21,7 @@ namespace BookStore.BookOperations.UpdateBook
             {
                 throw new InvalidOperationException("Güncellenecek kitap bulunamadı.");
             }
-            book.Title = Model.Title != default ? Model.Title : book.Title;
-            book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
+            book = _mapper.Map(Model, book);
             _context.SaveChanges();
         }
     }

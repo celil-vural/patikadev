@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Repositoriy.Concrate.Ef;
 
-namespace BookStore.Extensions
+namespace BookStore.Utilities.Extensions
 {
     public static class ServicesExtensions
     {
