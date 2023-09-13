@@ -1,6 +1,11 @@
-using Entities;
+using BookStore.BookOperations.CreateBook;
+using BookStore.BookOperations.DeleteBook;
+using BookStore.BookOperations.GetBookDetail;
+using BookStore.BookOperations.GetBooks;
+using BookStore.BookOperations.UpdateBook;
 using Microsoft.AspNetCore.Mvc;
 using Repositoriy.Concrate.Ef;
+using static BookStore.BookOperations.CreateBook.CreateBookQuery;
 
 namespace BookStore.Controllers
 {
@@ -14,47 +19,75 @@ namespace BookStore.Controllers
             this._context = context;
         }
         [HttpGet]
-        public HashSet<Book?>? Books()
+        public IActionResult Books()
         {
-            return _context.Books.OrderBy(e => e.Id).ToHashSet<Book?>();
+            GetBooksQuery query = new(_context);
+            var result = query.Handle();
+            return Ok(result);
         }
         [HttpGet("{id}")]
-        public Book? GetById([FromRoute(Name = "id")] int id)
+        public IActionResult GetById([FromRoute(Name = "id")] int id)
         {
-            return _context.Books.FirstOrDefault(e => e.Id == id);
+            BookDetailViewModel result;
+            try
+            {
+                GetBookDetailQuery query = new(_context);
+                query.BookId = id;
+                result = query.Handle();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [HttpPost]
-        public IActionResult AddBook([FromForm] Book newBook)
+        public IActionResult AddBook([FromForm] CreateBookModel newBook)
         {
-            var book = _context.Books.FirstOrDefault(e => e.Title == newBook.Title);
-            if (book is not null)
+            try
             {
-                return BadRequest();
+                CreateBookQuery command = new(_context);
+                command.Model = newBook;
+                command.Handle();
+                return Ok();
             }
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
-            return Ok();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateBook([FromRoute] int id, [FromBody] Book updatedBook)
+        public IActionResult UpdateBook([FromRoute] int id, [FromBody] UpdateBookModel updatedBook)
         {
-            var book = _context.Books.FirstOrDefault(e => e.Id == id);
-            if (book is null) return BadRequest();
-            book.GenreId = updatedBook.GenreId != default ? updatedBook.GenreId : book.GenreId;
-            book.PageCount = updatedBook.PageCount != default ? updatedBook.PageCount : book.PageCount;
-            book.PublishDate = updatedBook.PublishDate != default ? updatedBook.PublishDate : book.PublishDate;
-            book.Title = updatedBook.Title != default ? updatedBook.Title : book.Title;
-            _context.SaveChanges();
-            return Ok();
+            try
+            {
+                UpdateBookCommand command = new(_context);
+                command.BookId = id;
+                command.Model = updatedBook;
+                command.Handle();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteBook([FromRoute] int id)
         {
-            var book = _context.Books.FirstOrDefault(e => e.Id == id);
-            if (book is null) return BadRequest();
-            _context.Books.Remove(book);
-            _context.SaveChanges();
-            return Ok();
+            try
+            {
+                DeleteBookCommand command = new(_context);
+                command.BookId = id;
+                command.Handle();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

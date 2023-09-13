@@ -8,11 +8,17 @@ namespace BookStore.Extensions
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<EfRepositoryContext>(
-            options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b => b.MigrationsAssembly("BookStore"));
-
-            }
+                options =>
+                {
+                    options.UseSqlServer(
+                        configuration.GetConnectionString("sqlConnection"),
+                        b =>
+                        {
+                            b.MigrationsAssembly("BookStore");
+                            b.EnableRetryOnFailure();
+                        })
+                    .EnableSensitiveDataLogging();
+                }
             );
         }
     }
