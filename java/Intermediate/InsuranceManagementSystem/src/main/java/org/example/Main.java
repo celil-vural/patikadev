@@ -24,14 +24,11 @@ public class Main {
 
     }
     public static Account getAccount(short selectedOption){
-        switch (selectedOption){
-            case 1:
-                return Login.Login();
-            case 2:
-                return Register.Register();
-            case 3:
-                return null;
-        }
+        return switch (selectedOption) {
+            case 1 -> Login.Login();
+            case 2 -> Register.Register();
+            default -> null;
+        };
     }
     public static short startPage(){
         while(true){
