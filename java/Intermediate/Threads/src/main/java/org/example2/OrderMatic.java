@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 public class OrderMatic implements Runnable{
     private volatile int orderNo;
     //volatile cache verisi yerine işlemciye sordurtur buda bu uygulamada threadlerin garanti olarak değişkenin net değerine ulaşmasını sağlar
+//AtomicReference a bak
     public OrderMatic() {
         this.orderNo =0;
     }
