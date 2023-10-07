@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
 namespace BookStore.Core.CrossCuttingConcerns.Validation.FluentValidation
 {

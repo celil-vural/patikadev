@@ -21,5 +21,15 @@ namespace Services.Concrete.Books
         {
             base.Update(dto);
         }
+        [FluentValidationAspect(typeof(BookDeleteValidator))]
+        public override void Delete(int id)
+        {
+            base.Delete(id);
+        }
+        [FluentValidationAspect(typeof(BookGetByIdValidator))]
+        public override TDto? GetWithId<TDto>(int id) where TDto : default
+        {
+            return base.GetWithId<TDto>(id);
+        }
     }
 }
