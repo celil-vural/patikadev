@@ -1,9 +1,10 @@
-﻿using Entities.Concrete.Model;
-using Repositoriy.Concrete.Ef;
+﻿using Entity.Concrete.Models;
+using Repository.Concrete.Ef;
+using Repository.Contracts.Books;
 
-namespace Repositories.Concrete.Books
+namespace Repository.Concrete.Books
 {
-    public class BookRepository : RepositoryBase<Book>
+    public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
         public BookRepository(EfRepositoryContext context) : base(context)
         {

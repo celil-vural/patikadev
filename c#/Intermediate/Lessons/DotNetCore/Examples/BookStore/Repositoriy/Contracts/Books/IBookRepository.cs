@@ -1,6 +1,6 @@
-﻿using Entities.Concrete.Model;
+﻿using Entity.Concrete.Models;
 
-namespace Repositories.Contracts.Books
+namespace Repository.Contracts.Books
 {
     public interface IBookRepository : IRepositoryBase<Book>
     {

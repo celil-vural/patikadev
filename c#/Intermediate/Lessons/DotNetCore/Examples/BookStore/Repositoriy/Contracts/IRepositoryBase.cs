@@ -1,7 +1,7 @@
-﻿using Entities.Contracts;
+﻿using Entity.Contracts;
 using System.Linq.Expressions;
 
-namespace Repositories.Contracts
+namespace Repository.Contracts
 {
     public interface IRepositoryBase<TEntity> where TEntity : class, IEntity, new()
     {

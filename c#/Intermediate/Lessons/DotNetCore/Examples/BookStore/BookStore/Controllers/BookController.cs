@@ -1,5 +1,4 @@
-using Entities.Concrete.Dtos.Book;
-using Entities.Concrete.Dtos.Books;
+using Entity.Concrete.Dtos.Books;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts.Books;
 
@@ -17,69 +16,34 @@ namespace BookStore.Controllers
         [HttpGet]
         public IActionResult Books()
         {
-            try
-            {
-                var result = _bookService.GetHashSet<DtoForGetBooks>();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = _bookService.GetHashSet();
+            return Ok(result);
         }
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute(Name = "id")] int id)
         {
-            try
-            {
-                var result = _bookService.GetWithId<DtoForGetBookDetail>(id);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = _bookService.GetWithId(id);
+            return Ok(result);
         }
         [HttpPost]
         public IActionResult AddBook([FromForm] DtoForCreateBook newBook)
         {
-            try
-            {
-                _bookService.CreateWithDto(newBook);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            _bookService.CreateWithDto(newBook);
+            return Ok();
 
         }
         [HttpPut("{id}")]
         public IActionResult UpdateBook([FromBody] DtoForUpdateBook updatedBook)
         {
-            try
-            {
-                _bookService.Update(updatedBook);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            _bookService.Update(updatedBook);
+            return Ok();
 
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteBook([FromRoute] int id)
         {
-            try
-            {
-                _bookService.Delete(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            _bookService.Delete(id);
+            return Ok();
         }
     }
 }

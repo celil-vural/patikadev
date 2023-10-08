@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore", "BookStore\BookStore.csproj", "{3878B236-8E5B-458D-921E-716BE3B46A1E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{878BE139-6EB2-43FC-8647-65B2D5539C6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entities\Entity.csproj", "{878BE139-6EB2-43FC-8647-65B2D5539C6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositoriy\Repositories.csproj", "{0A83762B-F90B-4049-B250-603B77452F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repositoriy\Repository.csproj", "{0A83762B-F90B-4049-B250-603B77452F7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{B0EC2033-2490-4D63-AA84-B74827629068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{B0EC2033-2490-4D63-AA84-B74827629068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Core", "BookStore.Core\BookStore.Core.csproj", "{2EB15CD8-484D-40B8-9680-48118D7699EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStore.Core", "BookStore.Core\BookStore.Core.csproj", "{2EB15CD8-484D-40B8-9680-48118D7699EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Repositoriy.Concrate.Ef;
+using Repository.Concrete.Ef;
 
 #nullable disable
 
 namespace BookStore.Migrations
 {
     [DbContext(typeof(EfRepositoryContext))]
-    [Migration("20230913172813_First")]
-    partial class First
+    [Migration("20231007151044_startPoint")]
+    partial class startPoint
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace BookStore.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Entities.Book", b =>
+            modelBuilder.Entity("Entity.Concrete.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,6 +47,8 @@ namespace BookStore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
 
                     b.ToTable("Books");
 
@@ -75,6 +77,62 @@ namespace BookStore.Migrations
                             PublishDate = new DateTime(2002, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Herland"
                         });
+                });
+
+            modelBuilder.Entity("Entity.Concrete.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsActive = true,
+                            Name = "PersonalGrowth"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsActive = true,
+                            Name = "ScienceFiction"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsActive = true,
+                            Name = "Novel"
+                        });
+                });
+
+            modelBuilder.Entity("Entity.Concrete.Models.Book", b =>
+                {
+                    b.HasOne("Entity.Concrete.Models.Genre", "Genre")
+                        .WithMany("Books")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("Entity.Concrete.Models.Genre", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

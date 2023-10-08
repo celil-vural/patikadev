@@ -1,7 +1,7 @@
-﻿using Entities.Contracts;
+﻿using Entity.Contracts;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.Concrete.Model
+namespace Entity.Concrete.Models
 {
     public class Book : IEntity
     {
@@ -9,7 +9,10 @@ namespace Entities.Concrete.Model
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public int GenreId { get; set; }
+        public int AuthorId { get; set; }
         public int PageCount { get; set; }
         public DateTime PublishDate { get; set; }
+        public virtual Genre Genre { get; set; }
+        public virtual Author Author { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Entities.Concrete.Dtos.Books;
+﻿using Entity.Concrete.Dtos.Books;
 using FluentValidation;
 
 namespace Services.ValidationRules.FluentValidation.Books

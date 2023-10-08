@@ -1,15 +1,15 @@
-﻿using Entities.Contracts;
+﻿using Entity.Contracts;
 
 namespace Services.Contracts
 {
-    public interface IBaseService<TEntity> where TEntity : class, IEntity, new()
+    public interface IBaseService<TEntity, TDto> where TEntity : class, IEntity, new() where TDto : new()
     {
         int CreateWithDto<TDtoForInsertion>(TDtoForInsertion dtoForInsertion) where TDtoForInsertion : new();
         void Delete(int id);
         void GetNotFoundExceptions(TEntity? entity);
         TDtoForUpdate? GetEntity<TDtoForUpdate>(int id) where TDtoForUpdate : new();
-        IEnumerable<TDto>? GetHashSet<TDto>();
-        void Update<TDto>(TDto dto);
-        TDto? GetWithId<TDto>(int id);
+        IEnumerable<TDto>? GetHashSet();
+        TDtoForUpdate Update<TDtoForUpdate>(TDtoForUpdate dto);
+        TDto? GetWithId(int id);
     }
 }

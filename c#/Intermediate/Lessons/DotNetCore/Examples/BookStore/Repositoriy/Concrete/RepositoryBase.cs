@@ -1,10 +1,10 @@
-﻿using Entities.Contracts;
+﻿using Entity.Contracts;
 using Microsoft.EntityFrameworkCore;
-using Repositories.Contracts;
-using Repositoriy.Concrete.Ef;
+using Repository.Concrete.Ef;
 using System.Linq.Expressions;
+using Repository.Contracts;
 
-namespace Repositories.Concrete
+namespace Repository.Concrete
 {
     public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class, IEntity, new()
     {

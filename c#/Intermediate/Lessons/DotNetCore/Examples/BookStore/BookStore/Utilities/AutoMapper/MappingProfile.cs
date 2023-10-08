@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using BookStore.BookOperations.CreateBook;
-using BookStore.BookOperations.GetBookDetail;
-using BookStore.BookOperations.UpdateBook;
-using Entities.Common;
-using Entities.Concrete.Dtos.Book;
-using Entities.Concrete.Model;
+using Entity.Concrete.Dtos.Author;
+using Entity.Concrete.Dtos.Books;
+using Entity.Concrete.Dtos.Genre;
+using Entity.Concrete.Models;
 
 namespace BookStore.Utilities.AutoMapper
 {
@@ -12,14 +10,19 @@ namespace BookStore.Utilities.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<Book, DtoForGetBooks>()
-                .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ((GenreEnum)src.GenreId).ToString()));
-            CreateMap<Book, UpdateBookModel>().ReverseMap();
-            CreateMap<Book, CreateBookModel>().ReverseMap();
-            CreateMap<Book, BookDetailViewModel>()
-                .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ((GenreEnum)src.GenreId).ToString()))
-                .ReverseMap();
+            CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<Book, DtoForGetBooks>().ReverseMap();
+            CreateMap<Book, DtoForUpdateBook>().ReverseMap();
+            CreateMap<Book, DtoForCreateBook>().ReverseMap();
+            CreateMap<Book, DtoForGetBookDetail>().ReverseMap();
 
+            CreateMap<Genre, GenreDto>().ReverseMap();
+            CreateMap<Genre, DtoForCreateGenre>().ReverseMap();
+            CreateMap<Genre, DtoForUpdateGenre>().ReverseMap();
+
+            CreateMap<Author, DtoAuthor>().ReverseMap();
+            CreateMap<Author, DtoForUpdateAuthor>().ReverseMap();
+            CreateMap<Author, DtoForCreateAuthor>().ReverseMap();
         }
     }
 }

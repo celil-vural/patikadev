@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Entities.Contracts;
-using Repositories.Contracts;
+using Entity.Contracts;
+using Repository.Contracts;
 using Services.Contracts;
 
 namespace Services.Concrete
 {
-    public abstract class BaseService<TEntity> : IBaseService<TEntity> where TEntity : class, IEntity, new()
+    public abstract class BaseService<TEntity, TDto> : IBaseService<TEntity, TDto> where TEntity : class, IEntity, new() where TDto : new()
     {
         private readonly IRepositoryBase<TEntity> _baseRepository;
         private readonly IMapper _mapper;
@@ -26,14 +26,14 @@ namespace Services.Concrete
             GetNotFoundExceptions(entity);
             _baseRepository.Delete(entity!);
         }
-        public virtual TDto? GetWithId<TDto>(int id)
+        public virtual TDto? GetWithId(int id)
         {
             var entity = _baseRepository.GetWithId(id);
             GetNotFoundExceptions(entity);
             var dto = _mapper.Map<TDto>(entity);
             return dto;
         }
-        public virtual IEnumerable<TDto>? GetHashSet<TDto>()
+        public virtual IEnumerable<TDto>? GetHashSet()
         {
             var entities = _baseRepository.GetHashSet();
             var dto = _mapper.Map<IEnumerable<TDto>>(entities);
@@ -53,11 +53,14 @@ namespace Services.Concrete
             var dto = _mapper.Map<TDtoForUpdate>(entity);
             return dto;
         }
-        public virtual void Update<TDto>(TDto dto)
+
+
+        public virtual TDtoForUpdate Update<TDtoForUpdate>(TDtoForUpdate dto)
         {
             var entity = _mapper.Map<TEntity>(dto);
             GetNotFoundExceptions(entity);
             _baseRepository.Update(entity);
+            return dto;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Entities.Common
+﻿namespace Entity.Common
 {
     public enum GenreEnum
     {

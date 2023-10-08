@@ -15,8 +15,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\BookStore.Core\BookStore.Core.csproj" />
-		<ProjectReference Include="..\Entities\Entities.csproj" />
-		<ProjectReference Include="..\Repositoriy\Repositories.csproj" />
+		<ProjectReference Include="..\Entities\Entity.csproj" />
+		<ProjectReference Include="..\Repositoriy\Repository.csproj" />
 	</ItemGroup>
 
 </Project>

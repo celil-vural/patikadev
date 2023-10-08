@@ -1,4 +1,4 @@
-﻿using Dolunay_Villas.Core.CrossCuttingConcerns.Validation.FluentValidation;
+﻿using BookStore.Core.CrossCuttingConcerns.Validation.FluentValidation;
 using PostSharp.Aspects;
 
 namespace BookStore.Core.CrossCuttingConcerns.Aspects.Postsharp.ValidationAspect

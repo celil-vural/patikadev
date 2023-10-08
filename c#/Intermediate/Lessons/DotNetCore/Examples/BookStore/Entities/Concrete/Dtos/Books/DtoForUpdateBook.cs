@@ -1,4 +1,4 @@
-﻿namespace Entities.Concrete.Dtos.Books
+﻿namespace Entity.Concrete.Dtos.Books
 {
     public class DtoForUpdateBook
     {
