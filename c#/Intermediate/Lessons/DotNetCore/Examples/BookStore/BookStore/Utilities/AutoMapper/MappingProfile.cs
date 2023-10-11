@@ -2,6 +2,7 @@
 using Entity.Concrete.Dtos.Author;
 using Entity.Concrete.Dtos.Books;
 using Entity.Concrete.Dtos.Genre;
+using Entity.Concrete.Dtos.Users;
 using Entity.Concrete.Models;
 
 namespace BookStore.Utilities.AutoMapper
@@ -23,6 +24,10 @@ namespace BookStore.Utilities.AutoMapper
             CreateMap<Author, DtoAuthor>().ReverseMap();
             CreateMap<Author, DtoForUpdateAuthor>().ReverseMap();
             CreateMap<Author, DtoForCreateAuthor>().ReverseMap();
+
+            CreateMap<User, DtoUser>().ReverseMap();
+            CreateMap<User, DtoForCreateUser>().ReverseMap();
+            CreateMap<User, DtoForUpdateUser>().ReverseMap();
         }
     }
 }

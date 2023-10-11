@@ -1,20 +1,18 @@
 ﻿using Entity.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Repository.Concrete.Ef;
-using System.Linq.Expressions;
 using Repository.Contracts;
+using System.Linq.Expressions;
 
 namespace Repository.Concrete
 {
     public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class, IEntity, new()
     {
         protected readonly EfRepositoryContext _context;
-
         protected RepositoryBase(EfRepositoryContext context)
         {
             _context = context;
         }
-
         public virtual int Add(TEntity entity, bool trackChanges = false)
         {
             var entry = _context.Set<TEntity>().Add(entity);
